@@ -1,0 +1,2 @@
+C:\Users\Avitohol\Downloads\CodingExercise-master\ToDoListService\obj\Debug\CodingExercise.API.csprojAssemblyReference.cache
+C:\Users\Avitohol\Downloads\CodingExercise-master\ToDoListService\obj\Debug\CodingExercise.API.csproj.CoreCompileInputs.cache
