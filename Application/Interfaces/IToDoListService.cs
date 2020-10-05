@@ -5,8 +5,10 @@ namespace Application.Interfaces
     public interface IToDoListService
     {
         IList<IToDoItem> GetToDoItems(string userId);
-        void AddToDoItem(IToDoItem item, string userId);
-        void SetItemStatus(int itemId, int itemStatusId);
+        int AddToDoItem(IToDoItem item, string userId);
+        void SetItemStatusDone(int itemId);
+
+        void DeleteToDoItem(int itemId);
 
     }
 }

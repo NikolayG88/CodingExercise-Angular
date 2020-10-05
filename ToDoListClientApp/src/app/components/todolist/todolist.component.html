@@ -1,0 +1,39 @@
+<h2>ToDo List</h2>
+<hr>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('dismiss')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="header">Header</label>
+      <input type="text" id="header" class="form-control" [(ngModel)]="newItemHeader" />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" id="description" class="form-control" [(ngModel)]="newItemDesc" />
+    </div>
+    <div class="form-group">
+      <label for="dueIn">Due In</label>
+      <input type="text" id="dueIn" class="form-control" [(ngModel)]="newItemDueIn" />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('save')">Save</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add New Item</button>
+
+<hr>
+
+<div *ngFor="let item of itemList; index as i;" [attr.data-index]="i">
+  <app-todo-item [model]="item" [index]="i" 
+  (markAsDone)="markAsDoneHandler($event)"
+    (deleteItem)="deleteItemHandler($event)">
+  </app-todo-item>
+</div>

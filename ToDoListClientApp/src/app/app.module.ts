@@ -8,15 +8,20 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/interceptors/token.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+//Bootstrap
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { TodolistComponent } from './components/todolist/todolist.component';
+import { TodoItemComponent } from './components/todolist/todo-item/todo-item.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    TodolistComponent,
+    TodoItemComponent
   ],
   imports: [
     BrowserModule,
@@ -24,10 +29,8 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
-    NoopAnimationsModule,
-    MatInputModule,
-    MatFormFieldModule
+    NgbModule,
+    FontAwesomeModule
   ],
   providers: [
     {

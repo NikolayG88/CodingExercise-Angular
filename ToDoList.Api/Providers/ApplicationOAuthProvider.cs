@@ -28,6 +28,9 @@ namespace CodingExercise.API.Providers
         {
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
+
+            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "http://localhost:4200" });
+
             User user = await userManager.FindAsync(context.UserName, context.Password);
 
             if (user == null)

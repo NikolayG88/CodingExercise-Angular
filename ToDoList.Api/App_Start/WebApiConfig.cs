@@ -21,10 +21,12 @@ namespace CodingExercise.API
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            //Enable CORS
             string origin = "http://localhost:4200";
             EnableCorsAttribute cors = new EnableCorsAttribute(origin, "*", "*");
 
             config.EnableCors(cors);
+            
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

@@ -13,8 +13,6 @@ export class TokenInterceptor implements HttpInterceptor {
     
     intercept (request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
-       // console.log('Hello request!', request);
-       console.log('isAuthenticated', this.auth.isAuthenticated());
         if(this.auth.isAuthenticated()){
             request = request.clone({
                 setHeaders: {

@@ -2,6 +2,8 @@
 using Application.Interfaces;
 using Domain.Entities;
 using AutoMapper;
+using System.Linq;
+using Domain.Enums;
 
 namespace Application.Services
 {
@@ -15,22 +17,36 @@ namespace Application.Services
             _context = context;
         }
 
-        public void AddToDoItem(IToDoItem item, string userId)
+        public int AddToDoItem(IToDoItem item, string userId)
         {
             var newItem = _mapper.Map<ToDoItem>(item);
 
+            newItem.UserId = userId;
+
             _context.ToDoItems.Add(newItem);
+
             _context.SaveChanges();
+
+            return newItem.Id;
         }
 
         public IList<IToDoItem> GetToDoItems(string userId)
         {
-            throw new System.NotImplementedException();
+            return _mapper.Map<IList<IToDoItem>>( _context.ToDoItems.Where(i => i.UserId == userId));
         }
 
-        public void SetItemStatus(int itemId, int itemStatusId)
+        public void SetItemStatusDone(int itemId)
         {
-            throw new System.NotImplementedException();
+            _context.ToDoItems.FirstOrDefault(t => t.Id == itemId).StatusId = (int)ToDoItemStatusEnum.Done;
+
+            _context.SaveChanges();
+        }
+
+        public void DeleteToDoItem(int itemId)
+        {
+            var item = _context.ToDoItems.FirstOrDefault(itm => itm.Id == itemId);
+            _context.ToDoItems.Remove(item);
+            _context.SaveChanges();
         }
     }
 }

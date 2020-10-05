@@ -7,6 +7,7 @@ namespace Domain.Entities
     {
         public int Id { get; set; }
         public string UserId { get; set; }
+        public int StatusId { get; set; }
         public string Name { get; set; }
         public DateTime DueIn { get; set; }
         public string Description { get; set; }

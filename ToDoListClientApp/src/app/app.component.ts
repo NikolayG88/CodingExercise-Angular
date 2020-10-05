@@ -1,5 +1,6 @@
+import { AuthService } from 'src/services/auth.service';
 import { Component } from '@angular/core';
-import {ToDoListService} from 'src/services/todolist.service/todolist.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,11 @@ export class AppComponent {
   title = 'ToDoListWebApp';
 
 
-  constructor(private service: ToDoListService ) {
-
-    service.getToDoItems().subscribe(res => {
-      console.log(res);
-    });
+  constructor(private router: Router, private authService: AuthService) {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['todolist']);
+    }else{
+      this.router.navigate(['login']);
+    }
   }
 }

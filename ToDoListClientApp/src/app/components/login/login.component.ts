@@ -7,9 +7,9 @@ import { AuthService } from 'src/services/auth.service';
 import { Constants } from 'src/common/constants';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
@@ -17,11 +17,11 @@ export class LoginComponent implements OnInit {
     returnUrl: string;
 
     constructor(
-        private formBuilder: FormBuilder,
-        private route: ActivatedRoute,
         private router: Router,
+        private route: ActivatedRoute,
+        private formBuilder: FormBuilder,
         private authService: AuthService,
-     
+
     ) {
         // redirect to home if already logged in
         if (this.authService.isAuthenticated()) {
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         });
 
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/todolist';
     }
 
     // convenience getter for easy access to form fields
@@ -46,18 +46,10 @@ export class LoginComponent implements OnInit {
         this.submitted = true;
 
         // stop here if form is invalid
-        if (this.loginForm.invalid) {
-            return;
-        }
-
-        this.authService.authenticateUser(this.f.username.value, this.f.password.value)
+        if (this.loginForm.invalid) return;
         
-        .subscribe(
-          data => {
-              console.log('saving token', data);
-              sessionStorage.setItem(Constants.Session.Token, data);
-              this.router.navigate([this.returnUrl]);
-          });
-            
+        this.authService.authenticateUser(this.f.username.value, this.f.password.value).subscribe(_ => {
+            this.router.navigate([this.returnUrl]);
+        });
     }
 }

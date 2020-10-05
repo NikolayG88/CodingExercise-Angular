@@ -1,0 +1,10 @@
+<div class="card mb-3">
+    <div class="card-header bg-{{styleMap[model.StatusId]}}">
+      {{model.Name}} 
+      <button type="button" class="btn btn-danger" (click)="deleteItemhandler()"><fa-icon [icon]="faTimes"></fa-icon></button>
+      <button type="button" class="btn btn-success" (click)="markAsDoneHandler()"><fa-icon [icon]="faCheck"></fa-icon></button>
+    </div>
+    <div class="card-body text-primary">
+      <p class="card-text">{{model.Description}}</p>
+    </div>
+</div>

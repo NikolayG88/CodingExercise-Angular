@@ -32,6 +32,8 @@ namespace Persistance
                 .HasRequired(t => t.User).WithMany()
                 .HasForeignKey(t => t.UserId);
 
+            builder.Entity<ToDoItem>().HasRequired(t => t.Status).WithMany().HasForeignKey(t => t.StatusId);
+
             builder.Entity<ToDoItem>().Property(t => t.Description)
                 .HasMaxLength(500)
                 .IsRequired();
